@@ -12,6 +12,11 @@
 		043DFC0829F95890008A3E65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 043DFC0729F95890008A3E65 /* Assets.xcassets */; };
 		043DFC0B29F95890008A3E65 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 043DFC0A29F95890008A3E65 /* Preview Assets.xcassets */; };
 		043DFC1529F959FF008A3E65 /* cafetariaData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 043DFC1429F959FF008A3E65 /* cafetariaData.geojson */; };
+		043DFC1929F9627C008A3E65 /* menuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC1829F9627C008A3E65 /* menuItem.swift */; };
+		043DFC1C29F96373008A3E65 /* cartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC1B29F96373008A3E65 /* cartItem.swift */; };
+		043DFC1E29F964AE008A3E65 /* mainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC1D29F964AE008A3E65 /* mainPageView.swift */; };
+		043DFC2029F96B32008A3E65 /* checkOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC1F29F96B32008A3E65 /* checkOutView.swift */; };
+		043DFC2229F96BB5008A3E65 /* cafetariaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC2129F96BB5008A3E65 /* cafetariaView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +26,11 @@
 		043DFC0729F95890008A3E65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		043DFC0A29F95890008A3E65 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		043DFC1429F959FF008A3E65 /* cafetariaData.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = cafetariaData.geojson; sourceTree = "<group>"; };
+		043DFC1829F9627C008A3E65 /* menuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuItem.swift; sourceTree = "<group>"; };
+		043DFC1B29F96373008A3E65 /* cartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartItem.swift; sourceTree = "<group>"; };
+		043DFC1D29F964AE008A3E65 /* mainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainPageView.swift; sourceTree = "<group>"; };
+		043DFC1F29F96B32008A3E65 /* checkOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkOutView.swift; sourceTree = "<group>"; };
+		043DFC2129F96BB5008A3E65 /* cafetariaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cafetariaView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +63,8 @@
 		043DFC0229F9588E008A3E65 /* 0706012110019-ileenetrinia-AFL3-ucwalk */ = {
 			isa = PBXGroup;
 			children = (
+				043DFC1729F9622F008A3E65 /* Views */,
+				043DFC1629F9620F008A3E65 /* Models */,
 				043DFC1129F95904008A3E65 /* Resources */,
 				043DFC0329F9588E008A3E65 /* _706012110019_ileenetrinia_AFL3_ucwalkApp.swift */,
 				043DFC0529F9588E008A3E65 /* ContentView.swift */,
@@ -76,6 +88,25 @@
 				043DFC1429F959FF008A3E65 /* cafetariaData.geojson */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		043DFC1629F9620F008A3E65 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				043DFC1829F9627C008A3E65 /* menuItem.swift */,
+				043DFC1B29F96373008A3E65 /* cartItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		043DFC1729F9622F008A3E65 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				043DFC1D29F964AE008A3E65 /* mainPageView.swift */,
+				043DFC1F29F96B32008A3E65 /* checkOutView.swift */,
+				043DFC2129F96BB5008A3E65 /* cafetariaView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,7 +181,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				043DFC0629F9588E008A3E65 /* ContentView.swift in Sources */,
+				043DFC1929F9627C008A3E65 /* menuItem.swift in Sources */,
+				043DFC1E29F964AE008A3E65 /* mainPageView.swift in Sources */,
+				043DFC1C29F96373008A3E65 /* cartItem.swift in Sources */,
+				043DFC2029F96B32008A3E65 /* checkOutView.swift in Sources */,
 				043DFC0429F9588E008A3E65 /* _706012110019_ileenetrinia_AFL3_ucwalkApp.swift in Sources */,
+				043DFC2229F96BB5008A3E65 /* cafetariaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
