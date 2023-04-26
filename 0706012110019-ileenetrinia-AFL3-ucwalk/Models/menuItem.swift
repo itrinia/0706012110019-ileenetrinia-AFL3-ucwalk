@@ -6,16 +6,32 @@
 //
 
 import Foundation
+import Combine
 
-struct menuItem: Identifiable {
-    let id = UUID()
-    //a uuid that identifies the menu item.
-    let name: String
-    //a string that represents the name of the menu item.
-    let price: Double
-    //a double that represents the price of the menu item.
-    let imageName: String
-    // a string that represents the name of the image file for the menu item.
-    let description: String
-    //a string that represents a brief description of the menu item.
+final class MenuItem: ObservableObject {
+    @Published var cartItem: [cartItem] = load("cafetariaData.json")
+}
+
+var menuItem: [cartItem] = load("cafetariaData.json")
+
+func load<T: Decodable>(_ filename: String) -> T {
+    let data: Data
+    
+    guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
+    else {
+        fatalError("Couldn't find \(filename) in main bundle.")
+    }
+    
+    do {
+        data = try Data(contentsOf: file)
+    } catch {
+        fatalError("Couldn't load \(filename) from main bundle:\n\(error)")
+    }
+    
+    do {
+        let decoder = JSONDecoder()
+        return try decoder.decode(T.self, from: data)
+    } catch {
+        fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
+    }
 }

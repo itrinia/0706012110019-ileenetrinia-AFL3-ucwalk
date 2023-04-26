@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct _706012110019_ileenetrinia_AFL3_ucwalkApp: App {
+    @StateObject private var cafetariaData = CafetariaData()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(cafetariaData)
         }
     }
 }
