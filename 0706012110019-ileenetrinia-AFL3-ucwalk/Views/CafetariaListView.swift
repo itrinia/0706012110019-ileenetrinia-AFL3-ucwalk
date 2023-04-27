@@ -9,23 +9,32 @@ import Foundation
 import SwiftUI
 
 struct CafetariaListView: View {
-    @EnvironmentObject var cafetariaData: CafetariaData
+    @ObservedObject var cafetariaData = CafetariaData()
+    var cafetaria: Cafetaria
     
     var body: some View {
         NavigationView {
-            List(cafetariaData.cafes) { cafe in
+            List(cafetariaData.cafetarias) { cafe in
                 NavigationLink(destination: CafetariaDetailView(cafe: cafe)) {
-                    Text(cafe.cafe)
+                    Text(cafetaria.cafe)
+                    //for each
                 }
             }
             .navigationTitle("Cafeterias")
         }
+        .onAppear {
+            keranjang.setupcafe() // load the cafeteria data
+        }
     }
 }
 
+
+//saya kurang tahu cara ngedisplay nested json pak, jadi mohon maaf sampai disini saja :D
 struct CafetariaListView_Previews: PreviewProvider {
+    static let cafetariaData = CafetariaData()
+    
     static var previews: some View {
-        CafetariaListView()
-            .environmentObject(CafetariaData())
+        CafetariaListView(cafetaria: CafetariaData().menus[])
+            .environmentObject(cafetariaData)
     }
 }

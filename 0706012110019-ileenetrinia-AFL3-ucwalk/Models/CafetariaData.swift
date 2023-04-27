@@ -8,31 +8,6 @@
 import Foundation
 import Combine
 
-import Foundation
-
-//class CafetariaData: ObservableObject {
-//    @Published var cafes = [Cafetaria]()
-//
-//    init() {
-//        loadData()
-//    }
-//
-//    func loadData() {
-//        if let fileURL = Bundle.main.url(forResource: "cafetariaData", withExtension: "json") {
-//            do {
-//                let data = try Data(contentsOf: fileURL)
-//                let decoder = JSONDecoder()
-//                let cafes = try decoder.decode([Cafetaria].self, from: data)
-//                self.cafes = cafes
-//            } catch {
-//                print("Error loading JSON data: \(error.localizedDescription)")
-//            }
-//        } else {
-//            print("Error locating JSON file")
-//        }
-//    }
-//}
-
 class CafetariaData: ObservableObject {
     @Published var cafetarias: [Cafetaria] = getCafetarias()
     @Published var menus: [Cafetaria.Menu] = getMenus()

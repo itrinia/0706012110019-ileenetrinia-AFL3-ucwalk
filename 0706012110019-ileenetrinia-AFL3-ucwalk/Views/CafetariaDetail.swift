@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 struct CafetariaDetailView: View {
     let cafe: Cafetaria
     
