@@ -7,15 +7,17 @@
 
 import Foundation
 import SwiftUI
-import CoreLocation
 
-struct Cafetaria: Hashable, Codable {
-    var cafe: String = ""
-    let menu: [Menu]
+struct Cafetaria: Codable, Identifiable {
+    var idcafe: String
+    var cafe: String
+    var menu: [Menu]
     
-    struct Menu: Hashable, Codable {
-        var id: Int = 0
-        var name: String = ""
-        var price: Int = 0
+    struct Menu: Codable, Identifiable {
+        var id: Int
+        var name: String
+        var price: Int
     }
+    
+    var id: String { idcafe }
 }

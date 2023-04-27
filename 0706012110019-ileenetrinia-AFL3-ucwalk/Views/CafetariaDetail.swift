@@ -5,36 +5,24 @@
 //  Created by MacBook Pro on 26/04/23.
 //
 
-import SwiftUI
-
 import Foundation
 import SwiftUI
 
-struct CafetariaDetail: View {
-    @EnvironmentObject var cafetariaData: CafetariaData
-    var cafetaria: Cafetaria
-    var menu: Cafetaria.Menu
-    
-    var cafetariaIndex: Int {
-        cafetariaData.menus.firstIndex(where: { $0.id == menu.id }) ?? 0
-    }
-    
+
+struct CafetariaDetailView: View {
+    let cafe: Cafetaria
     
     var body: some View {
-        ScrollView {
-            Text(cafetaria.cafe)
-            //loop2
-            
+        List(cafe.menu) { menu in
+            Text(menu.name)
         }
+        .navigationTitle(cafe.cafe)
     }
 }
 
-
-struct CafetariaDetail_Previews: PreviewProvider {
-    static let cafetariaData = CafetariaData()
-    
+struct CafetariaDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CafetariaDetail(cafetaria: CafetariaData().menus[])
-            .environmentObject(cafetariaData)
+        CafetariaDetailView(cafe: Cafetaria(idcafe: "1", cafe: "Tuku-Tuku", menu: []))
+            .environmentObject(CafetariaData())
     }
 }
