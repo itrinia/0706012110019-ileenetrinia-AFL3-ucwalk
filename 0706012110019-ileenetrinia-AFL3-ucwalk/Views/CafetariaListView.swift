@@ -16,7 +16,7 @@ struct CafetariaListView: View {
         NavigationStack {
             List(cafes) { cafe in
                 NavigationLink(cafe.cafe) {
-                    CafetariaDetailView(cafe: cafe)
+                    CafetariaDetailView(cafedata: cafe)
                 }
             }.navigationTitle("Cafeterias")
         }

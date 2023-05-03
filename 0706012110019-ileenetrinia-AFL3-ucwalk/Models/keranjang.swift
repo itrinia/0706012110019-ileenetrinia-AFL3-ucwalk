@@ -7,19 +7,27 @@
 
 import Foundation
 
-struct keranjang {
-//    static var cafetarias: [Cafetaria] = []
-//    static var menus: [Cafetaria.Menu] = []
-//
-//    static func setupcafe() {
-//        if cafetarias.isEmpty {
-//            cafetarias = load("cafetariaData.json")
-//        }
-//    }
-//
-//    static func setupmenu() {
-//        if menus.isEmpty {
-//            menus = load("cafetariaData.json")
-//        }
-//    }
+struct keranjang{
+    var shoppingCart: [String: [ String: (price: Int, amount: Int) ]] = [:]
+    
+    func addItemToCart(cafeteria: String, order: String, price: Int, amount: Int) {
+        // set the cafeteria if it doesnt exist
+        if shoppingCart[cafeteria] == nil {
+            shoppingCart[cafeteria] = [:]
+        }
+        
+        // set the product if it doesn't exist
+        if shoppingCart[cafeteria]![order] == nil {
+            shoppingCart[cafeteria]![order] = (
+                price: price,
+                amount: 0
+            )
+        }
+        
+        // finally, add the amount
+        shoppingCart[cafeteria]![order]! = (
+            price: price,
+            amount: shoppingCart[cafeteria]![order]!.amount + amount
+        )
+    }
 }

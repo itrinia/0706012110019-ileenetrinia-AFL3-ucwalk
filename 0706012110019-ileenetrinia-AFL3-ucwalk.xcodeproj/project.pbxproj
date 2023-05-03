@@ -17,6 +17,8 @@
 		043DFC3629F9842A008A3E65 /* Cafetaria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC3529F9842A008A3E65 /* Cafetaria.swift */; };
 		043DFC3E29F987CC008A3E65 /* CafetariaDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC3D29F987CC008A3E65 /* CafetariaDetail.swift */; };
 		04612F0A29FADB7A0001C2F6 /* CafetariaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04612F0929FADB7A0001C2F6 /* CafetariaListView.swift */; };
+		04EEF2232A0259DC00D8F4EE /* AddProductAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EEF2222A0259DC00D8F4EE /* AddProductAmount.swift */; };
+		04EEF2252A0265CB00D8F4EE /* cartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EEF2242A0265CB00D8F4EE /* cartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		043DFC3529F9842A008A3E65 /* Cafetaria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafetaria.swift; sourceTree = "<group>"; };
 		043DFC3D29F987CC008A3E65 /* CafetariaDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafetariaDetail.swift; sourceTree = "<group>"; };
 		04612F0929FADB7A0001C2F6 /* CafetariaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafetariaListView.swift; sourceTree = "<group>"; };
+		04EEF2222A0259DC00D8F4EE /* AddProductAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductAmount.swift; sourceTree = "<group>"; };
+		04EEF2242A0265CB00D8F4EE /* cartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 				043DFC1F29F96B32008A3E65 /* checkOutView.swift */,
 				043DFC3D29F987CC008A3E65 /* CafetariaDetail.swift */,
 				04612F0929FADB7A0001C2F6 /* CafetariaListView.swift */,
+				04EEF2222A0259DC00D8F4EE /* AddProductAmount.swift */,
+				04EEF2242A0265CB00D8F4EE /* cartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,12 +177,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EEF2252A0265CB00D8F4EE /* cartView.swift in Sources */,
 				043DFC3E29F987CC008A3E65 /* CafetariaDetail.swift in Sources */,
 				043DFC0629F9588E008A3E65 /* ContentView.swift in Sources */,
 				043DFC3229F97FA7008A3E65 /* keranjang.swift in Sources */,
 				043DFC1C29F96373008A3E65 /* cartItem.swift in Sources */,
 				043DFC2029F96B32008A3E65 /* checkOutView.swift in Sources */,
 				04612F0A29FADB7A0001C2F6 /* CafetariaListView.swift in Sources */,
+				04EEF2232A0259DC00D8F4EE /* AddProductAmount.swift in Sources */,
 				043DFC0429F9588E008A3E65 /* _706012110019_ileenetrinia_AFL3_ucwalkApp.swift in Sources */,
 				043DFC3629F9842A008A3E65 /* Cafetaria.swift in Sources */,
 			);

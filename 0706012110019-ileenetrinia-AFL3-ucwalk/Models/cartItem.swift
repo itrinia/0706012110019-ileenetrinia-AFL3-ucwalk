@@ -13,4 +13,5 @@ struct cartItem: Hashable, Codable, Identifiable {
     let name: String
     let price: Int
     let menu: String
+    var quantity: Int
 }
