@@ -8,72 +8,114 @@
 import SwiftUI
 
 struct cartView: View {
-    var cafe: Cafe
-    var cart: keranjang
+//    var cafe: Cafe
+//    var cart: keranjang
+//    var total = 0
+    
     @Environment(\.presentationMode) var presentationMode
+//
+//    func showPurchasedProduct() -> Int {
+//        keranjang.getShoppingCart().forEach({ (shop, carts) in
+//            print("Products from \(shop):")
+//            carts.forEach({ product, data in
+//                print("- \(product) \(data.amount)x")
+//                total += data.amount * data.price
+//            })
+//        })
+//
+//        return total
+//    }
     
     var body: some View {
-        VStack(alignment: .center){
-            Text("Your Cart")
-            
-            var total = 0
-            
-            if cart.isEmpty {
-                print("\nYou did not buy any item yet!")
-            }
-            
-            cart.forEach({ (cafe, cart) in
-                print("\nYour order in \(cafe): ")
-                
-                cart.forEach({ (item, data) in
-                    total += data.amount * data.price
-                    print("- \(item) \(data.amount)x")
-                })
-                
-            })
-            
-            print("\nDo you want to check out or no?")
-            Button(action: {
-                checkOutView()
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Check Out")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }
-            Button(action: {
-                ContentView()
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Back")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }
-            
-            
-//            var inputcart: String = ""
-//            while true{
-//                inputcart = readLine()!
-//                if inputcart.caseInsensitiveCompare("C") == .orderedSame{
-//                   checkout(total: total)
-//                } else if inputcart.caseInsensitiveCompare("b") == .orderedSame{
-//                    main()
-//                } else {
-//                    print("\n😡 Please input a valid input 😡\n")
-//                    continue
+//        VStack(alignment: .center){
+            Text("🛒 Your orders:")
+//
+//            if keranjang.getShoppingCart().isEmpty {
+//                print("Your shopping cart is still empty :(")
+//                Button(action: {
+//                    ContentView()
+//                    presentationMode.wrappedValue.dismiss()
+//                }) {
+//                    Text("Back to the Cafetaria List")
+//                        .font(.headline)
+//                        .foregroundColor(.white)
+//                        .padding()
+//                        .frame(maxWidth: .infinity)
+//                        .background(Color.blue)
+//                        .cornerRadius(10)
 //                }
-//                break
+//
+//                //                clearScreen()
+//                ContentView()
 //            }
-            
-        }
+//
+//            // get the total amount
+//            let total = showPurchasedProduct()
+//            print("💵 Total amount needed to pay: \(total)")
+//            PayView(total: total).view()
+//        }
+//
+//        keranjang.getShoppingCart().forEach({ (shop, carts) in
+//            print("Your order from \(cafe):")
+//            carts.forEach({ product, data in
+//                print("- \(product) x\(data.amount)")
+//                total += data.amount * data.price
+//            })
+//        })
+//
+//        return total
+//
+//        Button(action: {
+//            self.presentationMode.wrappedValue.dismiss()
+//        }) {
+//            Text("Back")
+//        }
+//    }
+//}
+//
+//
+//struct PayView {
+//    var total: Int
+//
+//    init(total: Int) {
+//        self.total = total
+//    }
+//
+//    func view() -> Void {
+//        let money = components.IntegerInput(question: "Please enter the amount of money: ")
+//
+//        if money.value < 0 {
+//            print("Amount is invalid! \n")
+//            view()
+//        }
+//
+//        if money.value == 0 {
+//            print("Amount cannot be zero! \n")
+//            view()
+//        }
+//
+//        if money.value < total {
+//            print("Insufficient payment amount for this transaction! (need \(total)) \n")
+//            view()
+//        }
+//
+//        print("Your total order: \(total)")
+//
+//
+//        if money.value > total {
+//            print("You pay: \(money.value) Change: \(money.value - total)")
+//        } else {
+//            print("You pay: \(money.value) (no change)")
+//        }
+//
+//        // clear the shopping cart
+//        keranjang.resetShoppingCart()
+//        print("Enjoy your meals!")
+//        //code button back here
+//
+//        // back to main menu
+//        //        clearScreen()
+//        ContentView()
     }
 }
 

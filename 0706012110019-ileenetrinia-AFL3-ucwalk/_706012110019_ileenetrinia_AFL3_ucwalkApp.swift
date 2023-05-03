@@ -8,12 +8,15 @@
 import SwiftUI
 
 @main
+
+//dibuat di main biar gampang dicari dan ga kedobel2 
 struct _706012110019_ileenetrinia_AFL3_ucwalkApp: App {
+    @StateObject private var keranjangs = ModelData()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-            
+            ContentView().environmentObject(keranjangs)
+            //.environment..... keranjangs ini masukin ke envi nya content view
         }
     }
 }

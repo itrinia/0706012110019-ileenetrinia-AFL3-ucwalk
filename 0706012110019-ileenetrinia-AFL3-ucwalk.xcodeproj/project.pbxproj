@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041FF2B62A02A1D8000BD3C3 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041FF2B52A02A1D8000BD3C3 /* ModelData.swift */; };
 		043DFC0429F9588E008A3E65 /* _706012110019_ileenetrinia_AFL3_ucwalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC0329F9588E008A3E65 /* _706012110019_ileenetrinia_AFL3_ucwalkApp.swift */; };
 		043DFC0629F9588E008A3E65 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC0529F9588E008A3E65 /* ContentView.swift */; };
 		043DFC0829F95890008A3E65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 043DFC0729F95890008A3E65 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		041FF2B52A02A1D8000BD3C3 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		043DFC0029F9588E008A3E65 /* 0706012110019-ileenetrinia-AFL3-ucwalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "0706012110019-ileenetrinia-AFL3-ucwalk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		043DFC0329F9588E008A3E65 /* _706012110019_ileenetrinia_AFL3_ucwalkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _706012110019_ileenetrinia_AFL3_ucwalkApp.swift; sourceTree = "<group>"; };
 		043DFC0529F9588E008A3E65 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				043DFC1B29F96373008A3E65 /* cartItem.swift */,
 				043DFC3129F97FA7008A3E65 /* keranjang.swift */,
 				043DFC3529F9842A008A3E65 /* Cafetaria.swift */,
+				041FF2B52A02A1D8000BD3C3 /* ModelData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				043DFC1C29F96373008A3E65 /* cartItem.swift in Sources */,
 				043DFC2029F96B32008A3E65 /* checkOutView.swift in Sources */,
 				04612F0A29FADB7A0001C2F6 /* CafetariaListView.swift in Sources */,
+				041FF2B62A02A1D8000BD3C3 /* ModelData.swift in Sources */,
 				04EEF2232A0259DC00D8F4EE /* AddProductAmount.swift in Sources */,
 				043DFC0429F9588E008A3E65 /* _706012110019_ileenetrinia_AFL3_ucwalkApp.swift in Sources */,
 				043DFC3629F9842A008A3E65 /* Cafetaria.swift in Sources */,

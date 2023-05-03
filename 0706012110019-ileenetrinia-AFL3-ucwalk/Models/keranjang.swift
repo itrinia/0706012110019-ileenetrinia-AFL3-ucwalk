@@ -7,27 +7,43 @@
 
 import Foundation
 
-struct keranjang{
-    var shoppingCart: [String: [ String: (price: Int, amount: Int) ]] = [:]
+struct keranjang {
+    typealias shoppingCartType = [ String: [ String: (price: Int, amount: Int) ] ]
+    //typealias ini biar klo mau declare isi value nya itu gausah ketik yg kurung kotak, jd lgsg ketik yg shoppingcarttype itu lgsg biar simple n faster
+    fileprivate static var shoppingCart: shoppingCartType = [:]
+    //modify public var versi swift pke fileprivate, shoppingcart ini hanya bisa diakses di file ini aja
     
-    func addItemToCart(cafeteria: String, order: String, price: Int, amount: Int) {
-        // set the cafeteria if it doesnt exist
-        if shoppingCart[cafeteria] == nil {
-            shoppingCart[cafeteria] = [:]
+    // function to add an item to the cart
+    static func addToShoppingCart(cafe: Cafe, cafeMenuItem: CafeMenuItem, amount: Int) {
+        
+        // do some initialization before we can add to the cart
+        if shoppingCart[cafe.cafe] == nil {
+            shoppingCart[cafe.cafe] = [:]
         }
         
-        // set the product if it doesn't exist
-        if shoppingCart[cafeteria]![order] == nil {
-            shoppingCart[cafeteria]![order] = (
-                price: price,
+        
+        if shoppingCart[cafe.cafe]![cafeMenuItem.name] == nil {
+            shoppingCart[cafe.cafe]![cafeMenuItem.name] = (
+                price: cafeMenuItem.price,
                 amount: 0
             )
         }
         
-        // finally, add the amount
-        shoppingCart[cafeteria]![order]! = (
-            price: price,
-            amount: shoppingCart[cafeteria]![order]!.amount + amount
+        
+        // add to the cart after initialization is done
+        shoppingCart[cafe.cafe]![cafeMenuItem.name] = (
+            price: cafeMenuItem.price,
+            amount: shoppingCart[cafe.cafe]![cafeMenuItem.name]!.amount + amount
         )
+        
+    }
+    
+    static func getShoppingCart() -> shoppingCartType {
+        return shoppingCart
+    }
+    
+    static func resetShoppingCart() {
+        shoppingCart = [:]
     }
 }
+

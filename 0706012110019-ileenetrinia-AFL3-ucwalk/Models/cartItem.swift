@@ -12,6 +12,14 @@ struct cartItem: Hashable, Codable, Identifiable {
     let id: Int
     let name: String
     let price: Int
-    let menu: String
     var quantity: Int
+    
+    //diduplikat utk inisialisasi menu item n quantity dari cafemenuitem
+    init(menuItem: CafeMenuItem, quantity: Int){
+        self.id = menuItem.id
+        self.name = menuItem.name
+        self.price = menuItem.price
+        self.quantity = quantity
+        // initialize self quantity ini lgsg ke quantity krn lgsg nunjuk quantity yg sm dg file ini
+    }
 }

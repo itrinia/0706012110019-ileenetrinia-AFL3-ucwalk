@@ -18,7 +18,7 @@ struct CafetariaListView: View {
                 NavigationLink(cafe.cafe) {
                     CafetariaDetailView(cafedata: cafe)
                 }
-            }.navigationTitle("Cafeterias")
+            }.navigationTitle("Welcome to UC-Walk!")
         }
     }
 }
