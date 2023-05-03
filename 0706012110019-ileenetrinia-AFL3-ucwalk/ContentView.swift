@@ -11,7 +11,6 @@ struct ContentView: View {
     var body: some View {
         TabView {
             CafetariaListView()
-//                .environmentObject(CafetariaData())
                 .tabItem {
                     Label("Cafetarias", systemImage: "1.circle")
                 }
@@ -26,7 +25,7 @@ struct ContentView: View {
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
             ContentView()
-                .environmentObject(CafetariaData())
+               
         }
     }
 }

@@ -9,21 +9,16 @@ import Foundation
 import SwiftUI
 
 struct CafetariaListView: View {
-    @ObservedObject var cafetariaData = CafetariaData()
-    var cafetaria: Cafetaria
+    
+    var cafes: [Cafe] = Cafe.cafes()
     
     var body: some View {
-        NavigationView {
-            List(cafetariaData.cafetarias) { cafe in
-                NavigationLink(destination: CafetariaDetailView(cafe: cafe)) {
-                    Text(cafetaria.cafe)
-                    //for each
+        NavigationStack {
+            List(cafes) { cafe in
+                NavigationLink(cafe.cafe) {
+                    CafetariaDetailView(cafe: cafe)
                 }
-            }
-            .navigationTitle("Cafeterias")
-        }
-        .onAppear {
-            keranjang.setupcafe() // load the cafeteria data
+            }.navigationTitle("Cafeterias")
         }
     }
 }
@@ -31,10 +26,8 @@ struct CafetariaListView: View {
 
 //saya kurang tahu cara ngedisplay nested json pak, jadi mohon maaf sampai disini saja :D
 struct CafetariaListView_Previews: PreviewProvider {
-    static let cafetariaData = CafetariaData()
-    
     static var previews: some View {
-        CafetariaListView(cafetaria: CafetariaData().menus[])
-            .environmentObject(cafetariaData)
+        CafetariaListView()
+          
     }
 }

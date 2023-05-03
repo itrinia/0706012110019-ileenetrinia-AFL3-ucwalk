@@ -8,18 +8,18 @@
 import Foundation
 
 struct keranjang {
-    static var cafetarias: [Cafetaria] = []
-    static var menus: [Cafetaria.Menu] = []
-    
-    static func setupcafe() {
-        if cafetarias.isEmpty {
-            cafetarias = load("cafetariaData.json")
-        }
-    }
-    
-    static func setupmenu() {
-        if menus.isEmpty {
-            menus = load("cafetariaData.json")
-        }
-    }
+//    static var cafetarias: [Cafetaria] = []
+//    static var menus: [Cafetaria.Menu] = []
+//
+//    static func setupcafe() {
+//        if cafetarias.isEmpty {
+//            cafetarias = load("cafetariaData.json")
+//        }
+//    }
+//
+//    static func setupmenu() {
+//        if menus.isEmpty {
+//            menus = load("cafetariaData.json")
+//        }
+//    }
 }
