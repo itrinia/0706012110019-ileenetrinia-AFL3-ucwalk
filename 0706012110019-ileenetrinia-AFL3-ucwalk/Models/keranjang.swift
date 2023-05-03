@@ -7,43 +7,39 @@
 
 import Foundation
 
+struct cafes: Identifiable {
+    var id: Int
+    var nameOfCafe:String
+    
+    init(id ID:Int, nameOfCafe nameOfCafes:String){
+        self.id = ID
+        self.nameOfCafe = nameOfCafes
+    }
+}
+
 struct keranjang {
-    typealias shoppingCartType = [ String: [ String: (price: Int, amount: Int) ] ]
+    typealias shoppingCartType = [ cartItem ]
     //typealias ini biar klo mau declare isi value nya itu gausah ketik yg kurung kotak, jd lgsg ketik yg shoppingcarttype itu lgsg biar simple n faster
-    fileprivate static var shoppingCart: shoppingCartType = [:]
-    //modify public var versi swift pke fileprivate, shoppingcart ini hanya bisa diakses di file ini aja
+    var isi: shoppingCartType = []
     
-    // function to add an item to the cart
-    static func addToShoppingCart(cafe: Cafe, cafeMenuItem: CafeMenuItem, amount: Int) {
+    // we need this func bcs item di cartItem itu kepisah2 n bkal kedobel2, jd we extract all cafe names that has been purchased by user
+    func extractAllCafeNames() -> [cafes] {
+        //pke [cafes] karena utk ngereturn cafeAsStruct ke struct cafes, itu pke [cafes]
+        var allCafe: [String] = []
+        var cafeAsStruct: [cafes] = []
+        //we cant extend string, jd kt pke [cafes] bukan [String] krn string ga identifiable, gada protocol,, properti nya cm nama
         
-        // do some initialization before we can add to the cart
-        if shoppingCart[cafe.cafe] == nil {
-            shoppingCart[cafe.cafe] = [:]
+        for itemz in isi {
+            if !allCafe.contains( itemz.cafename ) {
+                allCafe.append( itemz.cafename )
+            }
         }
         
-        
-        if shoppingCart[cafe.cafe]![cafeMenuItem.name] == nil {
-            shoppingCart[cafe.cafe]![cafeMenuItem.name] = (
-                price: cafeMenuItem.price,
-                amount: 0
-            )
+        //we need this for buat bisa jalanin for each yg atas
+        for (index, namecafe) in allCafe.enumerated() {
+            cafeAsStruct.append(cafes(id:index, nameOfCafe: namecafe))
         }
-        
-        
-        // add to the cart after initialization is done
-        shoppingCart[cafe.cafe]![cafeMenuItem.name] = (
-            price: cafeMenuItem.price,
-            amount: shoppingCart[cafe.cafe]![cafeMenuItem.name]!.amount + amount
-        )
-        
-    }
-    
-    static func getShoppingCart() -> shoppingCartType {
-        return shoppingCart
-    }
-    
-    static func resetShoppingCart() {
-        shoppingCart = [:]
+        return cafeAsStruct
     }
 }
 

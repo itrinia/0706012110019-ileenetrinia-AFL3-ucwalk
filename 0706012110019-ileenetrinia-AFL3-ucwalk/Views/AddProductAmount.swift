@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddProductAmount: View {
-    
+    var cafename : String
     @Binding var selectedMenu: CafeMenuItem
     @EnvironmentObject var modelData: ModelData
     @State var quantity = 0
@@ -38,10 +38,10 @@ struct AddProductAmount: View {
             }
             .padding(.vertical)
             Button(action: {
-                let item = cartItem(menuItem: selectedMenu, quantity: quantity)
+                let item = cartItem(menuItem: selectedMenu, quantity: quantity, cafename: cafename)
                 //item = file cartItem initialize init nya dg selected menu dan quantity yg dideclare dr atas ini
                 
-                modelData.carts.append()
+                modelData.carts.isi.append(item)
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Add to Cart")
@@ -59,7 +59,7 @@ struct AddProductAmount: View {
 
 struct AddProductAmount_Previews: PreviewProvider {
     static var previews: some View {
-        AddProductAmount(selectedMenu: .constant(Cafe.cafes().first!.menu.first!))
+        AddProductAmount(cafename: "", selectedMenu: .constant(Cafe.cafes().first!.menu.first!))
             .environmentObject(ModelData())
     }
 }

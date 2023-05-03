@@ -9,6 +9,7 @@ import Foundation
 
 final class ModelData: ObservableObject {
     //biar bisa dijadiin stateobjact/obs object/envi object perlu final class observable object ini
+    //semua yang mau dienvironment object harus ada di observable object
     var carts: keranjang = keranjang()
     
     init(){

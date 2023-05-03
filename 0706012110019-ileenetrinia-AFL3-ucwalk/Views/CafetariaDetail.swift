@@ -31,7 +31,7 @@ struct CafetariaDetailView: View {
             
         }
         .sheet(isPresented: $showAlert) {
-            AddProductAmount(selectedMenu: $selectedMenu)
+            AddProductAmount(cafename: cafe.cafe, selectedMenu: $selectedMenu)
         }
         .navigationTitle(cafe.cafe)
         

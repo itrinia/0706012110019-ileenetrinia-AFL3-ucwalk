@@ -8,38 +8,98 @@
 import SwiftUI
 
 struct checkOutView: View {
-//    var total: Int
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var keranjang: ModelData
+    let bills = cartView.bills
     
-    var body: some View {
-        Text("\n🛒🛒🛒 Checkout 🛒🛒🛒")
-//        Text("TOTAL PRICE: \(total)k IDR")
+    //declare this for payment only
+    @State private var money = ""
+    @Binding var paymentSucceeded: Bool
+    
+    var keranjang:carts {
+        ModelData.keranjang
     }
     
-    //    while true {
-    //        print("Please enter payment amount: \n[Please enter without 000]")
-    //        if let paymentAmount = readLine(), let amount = Int(paymentAmount) {
-    //            if amount == 0 {
-    //                print("your payment can not be zero\n")
-    //            } else if amount < 0 {
-    //                print("your payment is less than zero :) \n")
-    //            }else if amount < total {
-    //                print("The payment amount is less than the total price.\n")
-    //            } else {
-    //                let change = amount - total
-    //                print("\nYour pay: \(amount)k IDR")
-    //                print("Change: \(change)k IDR")
-    //                print("Thank you for shopping with us! Enjoy your meals!\n")
-    //                shoppingCart.removeAll()
-    //                ContentView()
-    //            }
-    //        } else {
-    //            print("\nInvalid input. Please enter a valid payment amount.\n")
+    var body: some View {
+        VStack {
+            let bills = keranjang.calculateTotalBill()
+            Text("You must pay this:")
+                .font(.title)
+            Text("Rp. \(bills),00-")
+                .font(.subheadline)
+                .padding(.bottom)
+            
+            //bayar disini
+            
+            TextField("Please enter the payment of your old money: ", text: $money)
+                .multilineTextAlignment(.center)
+            
+            Text("There is no option paylater alias ngutang :)")
+            
+            Button("Pay Now"){
+                //                if processPayment(finalBill: bills) {
+                //                    paymentSucceeded = true
+                //                    dismiss()
+                //                }
+                if money.value < 0 {
+                    print("The payment is invalid! \n")
+                    body()
+                }
+                
+                if money.value == 0 {
+                    print("The payment cannot be zero! \n")
+                    body()
+                }
+                
+                if money.value < cartView.bills {
+                    print("The payment amount for this transaction is less than the debt! (need \(bills)) \n")
+                    body()
+                }
+                
+                print("Your total order: \(bills)")
+                
+                
+                if money.value > bills {
+                    print("You pay: \(money.value) Change: \(money.value - bills)")
+                } else {
+                    print("You pay: \(money.value) (no change)")
+                }
+                
+            }
+            
+            Button(action: {
+                ContentView()
+            }) {
+                Text("Cancel Check Out")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+        }
+    }
+    
+    //    func processPayment(finalBill theFinalBill:Int)-> Bool {
+    //
+    //        let bayar = Int(money) ?? -1
+    //        let isValid = bayar != -1
+    //
+    //        if !isValid {
+    //            return false
     //        }
+    //
+    //        if bayar <= 0 {
+    //            return false
+    //        }
+    //
+    //        if bayar < theFinalBill {
+    //            return false
+    //        }
+    //
+    //        return true
     //    }
 }
 
-struct checkOutView_Previews: PreviewProvider {
-    static var previews: some View {
-        checkOutView()
-    }
-}
+
