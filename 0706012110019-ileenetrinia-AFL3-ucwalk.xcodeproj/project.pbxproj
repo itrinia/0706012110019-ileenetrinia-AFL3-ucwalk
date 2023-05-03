@@ -15,7 +15,6 @@
 		043DFC2029F96B32008A3E65 /* checkOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC1F29F96B32008A3E65 /* checkOutView.swift */; };
 		043DFC3229F97FA7008A3E65 /* keranjang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC3129F97FA7008A3E65 /* keranjang.swift */; };
 		043DFC3629F9842A008A3E65 /* Cafetaria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC3529F9842A008A3E65 /* Cafetaria.swift */; };
-		043DFC3C29F98745008A3E65 /* cafetariaData.json in Resources */ = {isa = PBXBuildFile; fileRef = 043DFC3B29F98745008A3E65 /* cafetariaData.json */; };
 		043DFC3E29F987CC008A3E65 /* CafetariaDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DFC3D29F987CC008A3E65 /* CafetariaDetail.swift */; };
 		04612F0A29FADB7A0001C2F6 /* CafetariaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04612F0929FADB7A0001C2F6 /* CafetariaListView.swift */; };
 /* End PBXBuildFile section */
@@ -30,7 +29,6 @@
 		043DFC1F29F96B32008A3E65 /* checkOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkOutView.swift; sourceTree = "<group>"; };
 		043DFC3129F97FA7008A3E65 /* keranjang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keranjang.swift; sourceTree = "<group>"; };
 		043DFC3529F9842A008A3E65 /* Cafetaria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafetaria.swift; sourceTree = "<group>"; };
-		043DFC3B29F98745008A3E65 /* cafetariaData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cafetariaData.json; sourceTree = "<group>"; };
 		043DFC3D29F987CC008A3E65 /* CafetariaDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafetariaDetail.swift; sourceTree = "<group>"; };
 		04612F0929FADB7A0001C2F6 /* CafetariaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafetariaListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,7 +65,6 @@
 			children = (
 				043DFC1729F9622F008A3E65 /* Views */,
 				043DFC1629F9620F008A3E65 /* Models */,
-				043DFC1129F95904008A3E65 /* Resources */,
 				043DFC0329F9588E008A3E65 /* _706012110019_ileenetrinia_AFL3_ucwalkApp.swift */,
 				043DFC0529F9588E008A3E65 /* ContentView.swift */,
 				043DFC0729F95890008A3E65 /* Assets.xcassets */,
@@ -82,14 +79,6 @@
 				043DFC0A29F95890008A3E65 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		043DFC1129F95904008A3E65 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				043DFC3B29F98745008A3E65 /* cafetariaData.json */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		043DFC1629F9620F008A3E65 /* Models */ = {
@@ -172,7 +161,6 @@
 			files = (
 				043DFC0B29F95890008A3E65 /* Preview Assets.xcassets in Resources */,
 				043DFC0829F95890008A3E65 /* Assets.xcassets in Resources */,
-				043DFC3C29F98745008A3E65 /* cafetariaData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
