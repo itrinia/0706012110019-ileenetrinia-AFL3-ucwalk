@@ -10,19 +10,18 @@ import SwiftUI
 struct checkOutView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var keranjang: ModelData
-    let bills = cartView.bills
     
     //declare this for payment only
     @State private var money = ""
     @Binding var paymentSucceeded: Bool
     
-    var keranjang:carts {
-        ModelData.keranjang
+    var shoppingCart: keranjang{
+        keranjang.carts
     }
     
     var body: some View {
         VStack {
-            let bills = keranjang.calculateTotalBill()
+            let bills = keranjang.carts.calcbill()
             Text("You must pay this:")
                 .font(.title)
             Text("Rp. \(bills),00-")
@@ -33,39 +32,33 @@ struct checkOutView: View {
             
             TextField("Please enter the payment of your old money: ", text: $money)
                 .multilineTextAlignment(.center)
-            
+
             Text("There is no option paylater alias ngutang :)")
-            
+
             Button("Pay Now"){
-                //                if processPayment(finalBill: bills) {
-                //                    paymentSucceeded = true
-                //                    dismiss()
-                //                }
-                if money.value < 0 {
-                    print("The payment is invalid! \n")
-                    body()
+                if Int(money) ?? 0 < 0 {
+                    Text("The payment is invalid! \n")
                 }
                 
-                if money.value == 0 {
-                    print("The payment cannot be zero! \n")
-                    body()
+                if Int(money) ?? 0 == 0 {
+                    Text("The payment can't be zero!\nps: there is no ngutang in here!")
                 }
                 
-                if money.value < cartView.bills {
-                    print("The payment amount for this transaction is less than the debt! (need \(bills)) \n")
-                    body()
+                if Int(money) ?? 0 < bills {
+                    Text("The payment amount for this transaction is less than the debt! (need Rp\(bills)) \n")
                 }
                 
-                print("Your total order: \(bills)")
+                Text("Your total order: \(bills)")
                 
                 
-                if money.value > bills {
-                    print("You pay: \(money.value) Change: \(money.value - bills)")
+                if Int(money) ?? 0 > bills {
+                    Text("You pay: \(Int(money) ?? 0) Change: \(Int(money) ?? 0 -  bills)")
                 } else {
-                    print("You pay: \(money.value) (no change)")
+                    Text("You pay: \(Int(money) ?? 0) (no change)")
                 }
                 
             }
+
             
             Button(action: {
                 ContentView()
@@ -80,26 +73,6 @@ struct checkOutView: View {
             }
         }
     }
-    
-    //    func processPayment(finalBill theFinalBill:Int)-> Bool {
-    //
-    //        let bayar = Int(money) ?? -1
-    //        let isValid = bayar != -1
-    //
-    //        if !isValid {
-    //            return false
-    //        }
-    //
-    //        if bayar <= 0 {
-    //            return false
-    //        }
-    //
-    //        if bayar < theFinalBill {
-    //            return false
-    //        }
-    //
-    //        return true
-    //    }
 }
 
 

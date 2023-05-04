@@ -12,153 +12,100 @@ struct cartView: View {
     @EnvironmentObject var keranjang: ModelData
     //yg dipanggil oleh environmentobject itu adalah yg diobservablekan
     
-    //    func showPurchasedProduct() -> Int {
-    //        var total = 0
-    //dia dari file keranjang, diputer dulu ke modeldata carts, trs baru bisa balik ke extract
-    //
-    //        extract.forEach({ item in
-    //            Text("- \(item.name) \(item.amount)x")
-    //        })
-    //
-    //        total += item.amount * item.price
-    //        keranjang.carts.isi.forEach({ (item) in
-    //            Text("Products from \(item.cafename):")
-    //            cafes.forEach({ item in
-    //                Text("- \(item.name) \(item.amount)x")
-    //                total += item.amount * item.price
-    //            })
-    //        })
-    //        return total
-    //    }
+    @State var showCheckOut = false
+    @State var paymentSucceeded = false
+    
+    var isCartEmpty: Bool {
+        keranjang.carts.isi.isEmpty
+    }
+    
+    var extract: [cafes] {
+        keranjang.carts.extractAllCafeNames()
+    }
+    
+    var selectedItems: [cartItem] {
+        keranjang.carts.isi.filter { cartItem in
+            extract.contains { purchasedCafe in
+                cartItem.cafename == purchasedCafe.nameOfCafe
+            }
+        }
+    }
+    
+    var totalBill: Int {
+        keranjang.carts.calcbill()
+    }
     
     var body: some View {
-        Text("Your orders:")
-        
-        if keranjang.isi.isEmpty {
-            print("Your shopping cart is still empty :(")
-            Button(action: {
-                CafetariaListView()
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Back to the Cafetaria List")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }
-        } else {
-            var extract = keranjang.carts.extractAllCafeNames()
+        VStack {
+            Text("Your orders:")
             
-            VStack {
+            if isCartEmpty {
+                Text("Your shopping cart is still empty :(")
+                    .padding()
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        CafetariaListView()
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Back to the Cafetaria List")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                    Spacer()
+                }
+            } else {
                 List {
-                    ForEach(extract) { storeVisit in
-                        Section(header:Text(storeVisit.myName)){
-                            
-                            let selectedItems = keranjang.isi.filter {
-                                $0.storeName == storeVisit.myName }
-                            
-                            ForEach(selectedItems) { cartItem in
-                                
+                    // diextract (dari struct di keranjang) itu buat nampilin cafe apa aja yg udah dipurchased ama user
+                    
+                    //                    extract.forEach({ item in
+                    //            Text("- \(item.na
+                    
+                    //difor each buat cek apakah cafe e udah pernah dibeli sblmnya ato ga, biar ga dobel klo misal user 2x ke cafenya
+                    ForEach(keranjang.carts.extractAllCafeNames()) { cafe in
+                        Section(header: Text(cafe.nameOfCafe)) {
+                            ForEach(keranjang.carts.isi.indices.filter { index in
+                                keranjang.carts.isi[index].cafename == cafe.nameOfCafe
+                            }, id: \.self) { index in
+                                let cartItem = keranjang.carts.isi[index]
                                 VStack(alignment: .leading) {
                                     Text(cartItem.name)
-                                        .fontWeight(.medium)
-                                    Text("\(cartItem.price) x \(cartItem.quantity) = \(cartItem.price*cartItem.quantity)")
-                                        .fontWeight(.light)
+                                    Text("\(cartItem.price) -> \(cartItem.quantity)piece(s) = Rp\(cartItem.price * cartItem.quantity).000")
                                 }
                             }
                         }
                     }
-                    
-                    // Print total here
-                    Section(header: Text("You need to pay this:")
-                        .foregroundColor(.black)
-                    ){
-                        let bills = keranjang.calculateTotalBill()
-                        Text("Rp\(bills).000")
+                    Section(header: Text("You need to pay this:").foregroundColor(.black)) {
+                        Text("Rp\(totalBill).000")
                     }
-                    
-                    // Option to break
-                    Section(header: Text("")
-                        .foregroundColor(.black)
-                        .fontWeight(.medium)
-                    ){
-                        HStack{
+                    Section(header: Text("").foregroundColor(.black).fontWeight(.medium)) {
+                        HStack {
                             Spacer()
-                            Button("Check Out", action:{
-                                checkOutView()
-                            })
-                            .sheet(
-                                isPresented: $showCheckOut,
-                                onDismiss: {
+                            Button("Check Out", action: { showCheckOut = true })
+                                .sheet(isPresented: $showCheckOut, onDismiss: {
                                     if paymentSucceeded {
-                                        self.presentationMode.wrappedValue.dismiss()
-                                        keranjang.contents.removeAll()
+                                        presentationMode.wrappedValue.dismiss()
+                                        keranjang.carts.isi.removeAll()
                                     }
                                 }) {
                                     checkOutView(paymentSucceeded: $paymentSucceeded)
-                                    ContentView()
-                                    Spacer()
                                 }
+                            Spacer()
                         }
-                        
                     }
                 }
-                //
-                //        // get the total amount
-                //        let total = showPurchasedProduct()
-                //        print("💵 Total amount needed to pay: \(total)")
-                //        PayView(total: total).view()
-                
-                
-                //        Button(action: {
-                //            self.presentationMode.wrappedValue.dismiss()
-                //        }) {
-                //            Text("Back")
-                //        }
-                //    }
-                //}
-                //
-                //
-                //        func view() -> Void {
-                //            let money = components.IntegerInput(question: "Please enter the amount of money: ")
-                //
-                //            if money.value < 0 {
-                //                print("Amount is invalid! \n")
-                //                view()
-                //            }
-                //
-                //            if money.value == 0 {
-                //                print("Amount cannot be zero! \n")
-                //                view()
-                //            }
-                //
-                //            if money.value < total {
-                //                print("Insufficient payment amount for this transaction! (need \(total)) \n")
-                //                view()
-                //            }
-                //
-                //            print("Your total order: \(total)")
-                //
-                //
-                //            if money.value > total {
-                //                print("You pay: \(money.value) Change: \(money.value - total)")
-                //            } else {
-                //                print("You pay: \(money.value) (no change)")
-                //            }
-                //
-                // clear the shopping cart
-                // back to main menu
-                //        clearScreen()
-                
-            }}
-        
-        struct cartView_Previews: PreviewProvider {
-            static var previews: some View {
-                cartView()
-                    .environmentObject(ModelData)
             }
         }
+    }
+}
+
+struct cartView_Previews: PreviewProvider {
+    static var previews: some View {
+        cartView()
+            .environmentObject(ModelData())
     }
 }

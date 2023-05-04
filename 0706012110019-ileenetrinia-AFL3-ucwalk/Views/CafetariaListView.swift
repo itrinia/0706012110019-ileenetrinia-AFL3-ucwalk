@@ -28,6 +28,6 @@ struct CafetariaListView: View {
 struct CafetariaListView_Previews: PreviewProvider {
     static var previews: some View {
         CafetariaListView()
-          
+        
     }
 }

@@ -14,7 +14,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Cafetarias", systemImage: "1.circle")
                 }
-            checkOutView()
+            cartView()
                 .tabItem {
                     Label("Cart & Check Out", systemImage: "2.circle")
                 }

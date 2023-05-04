@@ -41,5 +41,16 @@ struct keranjang {
         }
         return cafeAsStruct
     }
+    
+    //calculate total bill is here
+    func calcbill() -> Int {
+        var bills = 0
+        
+        for menuItem in isi {
+            bills += menuItem.quantity * menuItem.price
+        }
+        return bills
+        
+    }
 }
 
