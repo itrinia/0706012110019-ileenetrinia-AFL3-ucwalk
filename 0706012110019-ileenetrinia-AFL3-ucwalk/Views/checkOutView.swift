@@ -23,7 +23,6 @@ struct checkOutView: View {
     
     var body: some View {
         VStack {
-            Spacer()
             let bills = keranjang.carts.calcbill()
             Text("You must pay this:")
                 .font(.title)
@@ -38,11 +37,11 @@ struct checkOutView: View {
             TextField("Please enter the payment amount:", text: $money)
                 .padding(.vertical)
                 .multilineTextAlignment(.center)
-            
-            NavigationLink(destination: CafetariaListView(), isActive: $paymentSucceeded) {
-                CafetariaListView()
-            }
-            .hidden()
+//
+//            NavigationLink(destination: CafetariaListView(), isActive: $paymentSucceeded) {
+//                CafetariaListView()
+//            }
+//            .hidden()
             HStack {
                 Spacer()
                 Button("Pay Now") {
