@@ -102,14 +102,18 @@ struct cartView: View {
                         
                     }
                 }
+//                .onAppear {
+//                    // reload the view when it appears to update the display
+//                    keranjang.objectWillChange.send()
+//                }
             }
         }
     }
-}
-
-struct cartView_Previews: PreviewProvider {
-    static var previews: some View {
-        cartView()
-            .environmentObject(ModelData())
+    
+    struct cartView_Previews: PreviewProvider {
+        static var previews: some View {
+            cartView()
+                .environmentObject(ModelData())
+        }
     }
 }

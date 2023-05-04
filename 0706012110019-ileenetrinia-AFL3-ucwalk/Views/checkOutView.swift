@@ -57,7 +57,7 @@ struct checkOutView: View {
                     } else {
                         let change = paymentAmount - bills
                         if change == 0 {
-                            paymentStatus = "Payment received, no change"
+                            paymentStatus = "Payment received, thank you and enjoy your meals!"
                         } else {
                             paymentStatus = "Payment received, change: Rp\(change).000"
                         }
