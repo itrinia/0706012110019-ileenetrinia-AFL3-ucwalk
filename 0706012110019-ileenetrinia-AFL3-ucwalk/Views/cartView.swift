@@ -76,7 +76,7 @@ struct cartView: View {
                             }
                         }
                     }
-                    Section(header: Text("You need to pay this:").foregroundColor(.black)) {
+                    Section(header: Text("Total bills:").foregroundColor(.black)) {
                         Text("Rp\(totalBill).000")
                     }
                     Section(header: Text("").foregroundColor(.black).fontWeight(.medium)) {

@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct checkOutView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var keranjang: ModelData
     
     //declare this for payment only
     @State private var money = ""
     @Binding var paymentSucceeded: Bool
+    @State private var paymentStatus = ""
     
     var shoppingCart: keranjang{
         keranjang.carts
@@ -21,73 +23,80 @@ struct checkOutView: View {
     
     var body: some View {
         VStack {
+            Spacer()
             let bills = keranjang.carts.calcbill()
             Text("You must pay this:")
                 .font(.title)
             Text("Rp. \(bills).000")
-                .font(.subheadline)
+                .font(.title)
                 .padding(.bottom)
+            Text("Please input without '000'")
+                .font(.subheadline)
             
             //bayar disini
             
-            TextField("Please enter the payment of your old money: ", text: $money)
+            TextField("Please enter the payment amount:", text: $money)
+                .padding(.vertical)
                 .multilineTextAlignment(.center)
             
-            Text("There is no option paylater alias ngutang :)\n\n")
-            
-            Button("Pay Now"){
-                let paymentAmount = Int(money) ?? 0
-                
-                if paymentAmount < 0 {
-                    // Display an error message
-                    Text("The payment is invalid! \n")
-                    return
-                }
-                
-                if paymentAmount == 0 {
-                    // Display an error message
-                    Text("The payment can't be zero!\nps: there is no ngutang in here!")
-                    return
-                }
-                
-                if paymentAmount < bills {
-                    // Display an error message
-                    Text("The payment amount for this transaction is less than the debt! (need Rp\(bills)) \n")
-                    return
-                }
-                
-                Text("Your total order: \(bills)")
-
-                
-                if Int(money) ?? 0 > bills {
-                    Text("You pay: \(Int(money) ?? 0) Change: \(Int(money) ?? 0 -  bills)")
-                } else {
-                    Text("You pay: \(Int(money) ?? 0) (no change)")
-                }
-                
-                // Update the paymentSucceeded binding to true
-                self.paymentSucceeded = true
-                
-                // Dismiss the view
-                self.dismiss()
+            NavigationLink(destination: CafetariaListView(), isActive: $paymentSucceeded) {
+                CafetariaListView()
             }
-            
-            
-            HStack{
+            .hidden()
+            HStack {
                 Spacer()
-                NavigationLink(destination: CafetariaListView()) {
-                    Text("Cancel Checkout")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(10)
+                Button("Pay Now") {
+                    let paymentAmount = Int(money) ?? 0
+                    let bills = keranjang.carts.calcbill()
+                    
+                    if paymentAmount < 0 {
+                        paymentStatus = "Invalid payment amount"
+                    } else if paymentAmount == 0 {
+                        paymentStatus = "Payment amount cannot be zero"
+                    } else if paymentAmount < bills {
+                        paymentStatus = "Payment amount is less than the total bill"
+                    } else {
+                        let change = paymentAmount - bills
+                        if change == 0 {
+                            paymentStatus = "Payment received, no change"
+                        } else {
+                            paymentStatus = "Payment received, change: Rp\(change).000"
+                        }
+                        paymentSucceeded = true // set paymentSucceeded to true after successful payment
+                    }
                 }
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(10)
                 Spacer()
             }
+            
+            Text(paymentStatus)
+                .foregroundColor(paymentStatus.isEmpty ? .clear : .red) // Hide text if no status to show
+                .padding(.top)
+            
+        }
+        
+        
+        HStack{
+            Spacer()
+            Button(action: {
+                // This will dismiss the current view
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Text("Back")
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.gray)
+                    .cornerRadius(10)
+            }
+            Spacer()
         }
     }
 }
+
 
 
