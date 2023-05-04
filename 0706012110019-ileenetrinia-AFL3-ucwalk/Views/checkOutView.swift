@@ -24,7 +24,7 @@ struct checkOutView: View {
             let bills = keranjang.carts.calcbill()
             Text("You must pay this:")
                 .font(.title)
-            Text("Rp. \(bills),00-")
+            Text("Rp. \(bills).000")
                 .font(.subheadline)
                 .padding(.bottom)
             
@@ -32,24 +32,32 @@ struct checkOutView: View {
             
             TextField("Please enter the payment of your old money: ", text: $money)
                 .multilineTextAlignment(.center)
-
-            Text("There is no option paylater alias ngutang :)")
-
+            
+            Text("There is no option paylater alias ngutang :)\n\n")
+            
             Button("Pay Now"){
-                if Int(money) ?? 0 < 0 {
+                let paymentAmount = Int(money) ?? 0
+                
+                if paymentAmount < 0 {
+                    // Display an error message
                     Text("The payment is invalid! \n")
+                    return
                 }
                 
-                if Int(money) ?? 0 == 0 {
+                if paymentAmount == 0 {
+                    // Display an error message
                     Text("The payment can't be zero!\nps: there is no ngutang in here!")
+                    return
                 }
                 
-                if Int(money) ?? 0 < bills {
+                if paymentAmount < bills {
+                    // Display an error message
                     Text("The payment amount for this transaction is less than the debt! (need Rp\(bills)) \n")
+                    return
                 }
                 
                 Text("Your total order: \(bills)")
-                
+
                 
                 if Int(money) ?? 0 > bills {
                     Text("You pay: \(Int(money) ?? 0) Change: \(Int(money) ?? 0 -  bills)")
@@ -57,19 +65,26 @@ struct checkOutView: View {
                     Text("You pay: \(Int(money) ?? 0) (no change)")
                 }
                 
+                // Update the paymentSucceeded binding to true
+                self.paymentSucceeded = true
+                
+                // Dismiss the view
+                self.dismiss()
             }
-
             
-            Button(action: {
-                ContentView()
-            }) {
-                Text("Cancel Check Out")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+            
+            HStack{
+                Spacer()
+                NavigationLink(destination: CafetariaListView()) {
+                    Text("Cancel Checkout")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                Spacer()
             }
         }
     }

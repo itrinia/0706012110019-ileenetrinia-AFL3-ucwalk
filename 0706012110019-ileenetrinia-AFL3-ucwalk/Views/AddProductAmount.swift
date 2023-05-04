@@ -18,6 +18,9 @@ struct AddProductAmount: View {
         VStack(alignment: .center, spacing: 16) {
             Text(selectedMenu.name)
                 .font(.title)
+            
+            Text("@Rp\(String(selectedMenu.price)).000")
+            
             HStack {
                 Button(action: {
                     if quantity > 0 {

@@ -44,10 +44,7 @@ struct cartView: View {
                     .padding()
                 HStack{
                     Spacer()
-                    Button(action: {
-                        CafetariaListView()
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
+                    NavigationLink(destination: CafetariaListView()) {
                         Text("Back to the Cafetaria List")
                             .font(.headline)
                             .foregroundColor(.white)
@@ -74,7 +71,7 @@ struct cartView: View {
                                 let cartItem = keranjang.carts.isi[index]
                                 VStack(alignment: .leading) {
                                     Text(cartItem.name)
-                                    Text("\(cartItem.price) -> \(cartItem.quantity)piece(s) = Rp\(cartItem.price * cartItem.quantity).000")
+                                    Text("\(cartItem.quantity) piece(s) * Rp\(cartItem.price).000\n= Rp\(cartItem.price * cartItem.quantity).000")
                                 }
                             }
                         }
@@ -83,19 +80,26 @@ struct cartView: View {
                         Text("Rp\(totalBill).000")
                     }
                     Section(header: Text("").foregroundColor(.black).fontWeight(.medium)) {
-                        HStack {
-                            Spacer()
-                            Button("Check Out", action: { showCheckOut = true })
-                                .sheet(isPresented: $showCheckOut, onDismiss: {
-                                    if paymentSucceeded {
-                                        presentationMode.wrappedValue.dismiss()
-                                        keranjang.carts.isi.removeAll()
-                                    }
-                                }) {
-                                    checkOutView(paymentSucceeded: $paymentSucceeded)
-                                }
-                            Spacer()
+                        Button(action: {
+                            showCheckOut = true
+                        }) {
+                            Text("Check Out")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.blue)
+                                .cornerRadius(10)
                         }
+                        .sheet(isPresented: $showCheckOut, onDismiss: {
+                            if paymentSucceeded {
+                                presentationMode.wrappedValue.dismiss()
+                                keranjang.carts.isi.removeAll()
+                            }
+                        }) {
+                            checkOutView(paymentSucceeded: $paymentSucceeded)
+                        }
+                        
                     }
                 }
             }
